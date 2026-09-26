@@ -420,6 +420,8 @@ button {
 }
 
 
+
+
 /* =====================================================
    HERO CONTENT
 ===================================================== */
@@ -1799,17 +1801,31 @@ textarea {
     align-items: center;
 
 }
+.about-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: auto;
+
+    overflow: visible;
+}
 
 
 .about-image img {
+    display: block;
 
     width: 100%;
+    height: auto;
 
-    height: 500px;
+    max-width: 100%;
+    max-height: 600px;
 
-    object-fit: cover;
-
+    object-fit: contain;
 }
+
+
 
 
 .about-content p {
@@ -2848,3 +2864,113 @@ MOBILE
     background: #333;
     border-color: #333;
 }
+
+/* =====================================================
+   MOBILE HERO - FINAL OVERRIDE
+===================================================== */
+
+@media screen and (max-width: 768px) {
+
+    /* HERO */
+
+    section.hero {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+
+        position: relative !important;
+
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+
+        padding: 45px 20px 50px !important;
+
+        overflow: hidden !important;
+    }
+
+
+    /* HERO TEXT */
+
+    section.hero .hero-content {
+        position: relative !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+
+        transform: none !important;
+
+        z-index: 5 !important;
+
+        order: 1 !important;
+    }
+
+
+    /* HERO BURGER CONTAINER */
+
+    section.hero .hero-burger {
+        position: relative !important;
+
+        width: 100% !important;
+        max-width: 280px !important;
+
+        height: 280px !important;
+
+        margin: 25px auto 0 !important;
+
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+
+        transform: none !important;
+
+        z-index: 2 !important;
+
+        order: 2 !important;
+    }
+
+
+    /* BURGER IMAGE */
+
+    section.hero .hero-burger img {
+        position: relative !important;
+
+        display: block !important;
+
+        width: 100% !important;
+
+        height: 280px !important;
+
+        max-width: 100% !important;
+        max-height: 280px !important;
+
+        object-fit: contain !important;
+
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+
+        transform: none !important;
+    }
+
+
+    /* BUTTONS */
+
+    section.hero .hero-buttons {
+        position: relative !important;
+
+        z-index: 6 !important;
+
+        width: 100% !important;
+    }
+
+}
+
+

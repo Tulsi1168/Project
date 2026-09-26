@@ -2064,3 +2064,32 @@ document.addEventListener(
 
     }
 );
+
+/* =====================================================
+   ABOUT IMAGE - SCALE UP ON PAGE LOAD
+===================================================== */
+
+.about-image {
+    animation: aboutImageScale 1s ease-out forwards;
+    transform-origin: center center;
+}
+
+
+@keyframes aboutImageScale {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.65);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
