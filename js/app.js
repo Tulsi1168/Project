@@ -1689,6 +1689,7 @@ localStorage.setItem(
     "biteAddaOrder",
     JSON.stringify(newOrder)
 );
+saveOrderToUserHistory(newOrder);
 
 
             alert(

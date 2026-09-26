@@ -2538,7 +2538,7 @@ ORDER TRACKING TIMELINE
 
 .track-order-header {
 
-```
+
 display: flex;
 
 align-items: center;
@@ -2550,23 +2550,23 @@ gap: 20px;
 padding-bottom: 25px;
 
 border-bottom: 1px solid var(--border);
-```
+
 
 }
 
 .track-order-header h2 {
 
-```
+
 margin-top: 5px;
 
 font-size: 28px;
-```
+
 
 }
 
 .track-type {
 
-```
+
 padding: 8px 15px;
 
 border: 1px solid var(--gold);
@@ -2578,7 +2578,7 @@ color: var(--gold);
 font-size: 13px;
 
 font-weight: bold;
-```
+
 
 }
 
@@ -2588,17 +2588,17 @@ TIMELINE
 
 .status-timeline {
 
-```
+
 margin-top: 30px;
 
 text-align: left;
-```
+
 
 }
 
 .timeline-step {
 
-```
+
 position: relative;
 
 display: flex;
@@ -2606,7 +2606,7 @@ display: flex;
 gap: 20px;
 
 min-height: 85px;
-```
+
 
 }
 
@@ -2614,7 +2614,7 @@ min-height: 85px;
 
 .timeline-step:not(:last-child)::before {
 
-```
+
 content: "";
 
 position: absolute;
@@ -2628,7 +2628,7 @@ width: 2px;
 height: calc(100% - 5px);
 
 background: #444;
-```
+
 
 }
 
@@ -2636,9 +2636,9 @@ background: #444;
 
 .timeline-step.completed:not(:last-child)::before {
 
-```
+
 background: #3e8f50;
-```
+
 
 }
 
@@ -2646,7 +2646,7 @@ background: #3e8f50;
 
 .timeline-dot {
 
-```
+
 position: relative;
 
 z-index: 2;
@@ -2664,7 +2664,7 @@ border-radius: 50%;
 border: 2px solid #555;
 
 background: #1d1d1d;
-```
+
 
 }
 
@@ -2672,11 +2672,11 @@ background: #1d1d1d;
 
 .timeline-step.completed .timeline-dot {
 
-```
+
 background: #3e8f50;
 
 border-color: #3e8f50;
-```
+
 
 }
 
@@ -2684,13 +2684,13 @@ border-color: #3e8f50;
 
 .timeline-step.current .timeline-dot {
 
-```
+
 background: white;
 
 border-color: white;
 
 box-shadow: 0 0 0 5px rgba(255,255,255,0.10);
-```
+
 
 }
 
@@ -2698,11 +2698,11 @@ box-shadow: 0 0 0 5px rgba(255,255,255,0.10);
 
 .timeline-step.upcoming .timeline-dot {
 
-```
+
 background: transparent;
 
 border-color: #555;
-```
+
 
 }
 
@@ -2710,33 +2710,33 @@ border-color: #555;
 
 .timeline-content {
 
-```
+
 padding-bottom: 28px;
-```
+
 
 }
 
 .timeline-content h3 {
 
-```
+
 margin: 0;
 
 font-size: 17px;
 
 color: #777;
-```
+
 
 }
 
 .timeline-content p {
 
-```
+
 margin-top: 4px;
 
 color: #666;
 
 font-size: 13px;
-```
+
 
 }
 
@@ -2744,9 +2744,9 @@ font-size: 13px;
 
 .timeline-step.completed .timeline-content h3 {
 
-```
+
 color: #ffffff;
-```
+
 
 }
 
@@ -2754,19 +2754,19 @@ color: #ffffff;
 
 .timeline-step.current .timeline-content h3 {
 
-```
+
 color: #ffffff;
 
 font-weight: 800;
-```
+
 
 }
 
 .timeline-step.current .timeline-content p {
 
-```
+
 color: #bbbbbb;
-```
+
 
 }
 
@@ -2774,9 +2774,9 @@ color: #bbbbbb;
 
 .timeline-step.upcoming .timeline-content h3 {
 
-```
+
 color: #666;
-```
+
 
 }
 
@@ -2786,7 +2786,7 @@ TRACK ERROR
 
 .track-error {
 
-```
+
 margin-top: 20px;
 
 padding: 15px;
@@ -2796,7 +2796,7 @@ background: rgba(214,40,40,0.10);
 border-left: 3px solid var(--red);
 
 color: #ff7777;
-```
+
 
 }
 
@@ -2806,7 +2806,7 @@ MOBILE
 
 @media (max-width: 700px) {
 
-```
+
 .track-order-header {
 
     align-items: flex-start;
@@ -2835,6 +2835,16 @@ MOBILE
     gap: 15px;
 
 }
-```
 
+
+}
+.order-history-footer .btn-red {
+    background: #111;
+    color: white;
+    border-color: #111;
+}
+
+.order-history-footer .btn-red:hover {
+    background: #333;
+    border-color: #333;
 }
