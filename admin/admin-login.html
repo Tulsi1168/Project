@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Login - Bite Adda</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+
+<body class="admin-login-page">
+
+
+    <div class="login-box">
+
+        <div class="login-icon">
+            🍔
+        </div>
+
+        <h1>Bite Adda</h1>
+
+        <h2>Admin Login</h2>
+
+        <p class="login-subtitle">
+            Restaurant Management System
+        </p>
+
+
+        <form id="loginForm">
+
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+                required
+            >
+
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                required
+            >
+
+
+            <button type="submit">
+                LOGIN
+            </button>
+
+
+            <p
+                id="loginError"
+                class="login-error"
+            ></p>
+
+
+        </form>
+
+    </div>
+
+
+    <script>
+
+        document
+            .getElementById("loginForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const username =
+                        document
+                            .getElementById("username")
+                            .value
+                            .trim();
+
+
+                    const password =
+                        document
+                            .getElementById("password")
+                            .value;
+
+
+                    /*
+                       DEMO ADMIN LOGIN
+
+                       Username: admin
+                       Password: 1234
+                    */
+
+                    if (
+                        username === "admin" &&
+                        password === "1234"
+                    ) {
+
+                        localStorage.setItem(
+                            "biteAddaAdminLoggedIn",
+                            "true"
+                        );
+
+
+                        window.location.href =
+                            "admin.html";
+
+                    }
+
+                    else {
+
+                        document
+                            .getElementById("loginError")
+                            .textContent =
+                            "Invalid username or password.";
+
+                    }
+
+                }
+            );
+
+    </script>
+
+</body>
+
+</html>
+

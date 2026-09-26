@@ -1,0 +1,152 @@
+[
+    {
+        "id": 1,
+        "name": "Adda Zinger Burger",
+        "category": "Burgers",
+        "price": 180,
+        "description": "Crispy zinger chicken, fresh lettuce and creamy house sauce in a soft toasted bun.",
+        "image": "images/zinger burger.jpeg",
+        "badge": "Bestseller",
+        "extras": [
+            {
+                "name": "Extra Cheese",
+                "price": 30
+            },
+            {
+                "name": "Extra Chicken",
+                "price": 80
+            },
+            {
+                "name": "Jalapeño",
+                "price": 20
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Cheesy Beef Burger",
+        "category": "Burgers",
+        "price": 220,
+        "description": "Juicy beef patty layered with melted cheese, fresh vegetables and signature sauce.",
+        "image": "images/beef burger.jpeg",
+        "badge": ""
+    },
+    {
+        "id": 3,
+        "name": "Fiery Fried Chicken (2pc)",
+        "category": "Fried Chicken",
+        "price": 210,
+        "description": "Two crispy chicken pieces coated with our spicy signature seasoning.",
+        "image": "images/fiery fried.jpeg",
+        "badge": "Hot"
+    },
+    {
+        "id": 4,
+        "name": "Classic Fried Chicken (2pc)",
+        "category": "Fried Chicken",
+        "price": 190,
+        "description": "Two golden crispy chicken pieces with our classic crunchy coating.",
+        "image": "images/fried chicken.jpeg",
+        "badge": ""
+    },
+    {
+        "id": 5,
+        "name": "Chicken Shawarma Roll",
+        "category": "Rolls & Wraps",
+        "price": 150,
+        "description": "Tender chicken, fresh vegetables and creamy garlic sauce wrapped in soft flatbread.",
+        "image": "images/Shawarma.jpeg",
+        "badge": ""
+    },
+    {
+        "id": 6,
+        "name": "Beef Kathi Roll",
+        "category": "Rolls & Wraps",
+        "price": 170,
+        "description": "Juicy seasoned beef with onions, fresh vegetables and our special sauce.",
+        "image": "images/kathi roll.jpeg",
+        "badge": ""
+    },
+    {
+        "id": 7,
+        "name": "Loaded Cheesy Fries",
+        "category": "Sides",
+        "price": 140,
+        "description": "Crispy golden fries loaded with creamy cheese sauce and delicious toppings.",
+        "image": "images/fries.jpeg",
+        "badge": ""
+    },
+    {
+        "id": 8,
+        "name": "Onion Rings",
+        "category": "Sides",
+        "price": 110,
+        "description": "Crunchy golden onion rings served fresh and perfectly seasoned.",
+        "image": "images/onion rings.jpeg",
+        "badge": ""
+    },
+    {
+        "id": 9,
+        "name": "Adda Family Combo",
+        "category": "Combos",
+        "price": 520,
+        "description": "A satisfying family combo packed with delicious favourites for sharing.",
+        "image": "images/family combo.jpeg",
+        "badge": "15% OFF"
+    },
+    {
+        "id": 10,
+        "name": "Solo Zinger Combo",
+        "category": "Combos",
+        "price": 280,
+        "description": "A crispy zinger burger served with fries and a refreshing drink.",
+        "image": "images/zinger combo.jpeg",
+        "badge": ""
+    },
+    {
+        "id": 11,
+        "name": "Cold Coffee Shake",
+        "category": "Beverages",
+        "price": 120,
+        "description": "Smooth and creamy chilled coffee shake with a rich coffee flavour.",
+        "image": "images/cold coffee.jpg",
+        "badge": ""
+    },
+    {
+        "id": 12,
+        "name": "Lemon Mint Cooler",
+        "category": "Beverages",
+        "price": 90,
+        "description": "A refreshing blend of lemon, mint and ice for the perfect cool-down.",
+        "image": "images/mint lemon.jpeg",
+        "badge": ""
+    },
+    {
+        "id": 13,
+        "name": "Chocolate Shake",
+        "category": "Beverages",
+        "price": 150,
+        "description": "Creamy chocolate shake topped with chocolate drizzle.",
+        "image": "images/choco shake.jpeg",
+        "badge": "Sweet",
+        "extras": [
+            {
+                "name": "Whipped Cream",
+                "price": 20
+            }
+        ]
+    },
+
+    {
+        "id": 14,
+        "name": "Coca Cola",
+        "category": "Beverages",
+        "price": 80,
+        "description": "Refreshing, fizzy soft drink.",
+        "image": "images/coke.jpeg",
+        "badge": ""
+        
+    }
+
+]
+

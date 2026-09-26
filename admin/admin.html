@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard - Bite Adda</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                🍔
+            </div>
+
+            <div>
+
+                <h2>Bite Adda</h2>
+
+                <span>
+                    Admin Panel
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="admin-nav">
+
+
+            <button
+                class="nav-button active"
+                onclick="showSection('dashboard')"
+            >
+
+                <span>📊</span>
+
+                Dashboard
+
+            </button>
+
+
+            <button
+                class="nav-button"
+                onclick="showSection('orders')"
+            >
+
+                <span>📦</span>
+
+                Orders
+
+            </button>
+
+
+            <button
+                class="nav-button"
+                onclick="showSection('menu')"
+            >
+
+                <span>🍔</span>
+
+                Menu
+
+            </button>
+
+
+            <button
+                class="nav-button"
+                onclick="showSection('restaurant')"
+            >
+
+                <span>⚙️</span>
+
+                Restaurant
+
+            </button>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="nav-button logout-button"
+                onclick="logout()"
+            >
+
+                <span>🚪</span>
+
+                Logout
+
+            </button>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="admin-main">
+
+
+        <!-- HEADER -->
+
+        <header class="admin-header">
+
+
+            <div>
+
+                <h1 id="pageTitle">
+                    Dashboard
+                </h1>
+
+                <p id="pageSubtitle">
+                    Welcome to your restaurant dashboard.
+                </p>
+
+            </div>
+
+
+            <div class="admin-user">
+
+                <div class="admin-avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        Restaurant Manager
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =====================================
+             DASHBOARD
+        ====================================== -->
+
+        <section
+            id="dashboard"
+            class="admin-section"
+        >
+
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📦
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Orders
+                        </p>
+
+                        <h2 id="totalOrders">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ⏳
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Pending
+                        </p>
+
+                        <h2 id="pendingOrders">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✅
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Completed
+                        </p>
+
+                        <h2 id="completedOrders">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ৳
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Sales
+                        </p>
+
+                        <h2 id="totalSales">
+                            ৳0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- RECENT ORDER -->
+
+            <div class="dashboard-card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Latest Order
+                        </h2>
+
+                        <p>
+                            Most recently placed order
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="small-button"
+                        onclick="showSection('orders')"
+                    >
+                        View Orders
+                    </button>
+
+                </div>
+
+
+                <div id="latestOrder">
+
+                    <p class="empty-message">
+                        No order found.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             ORDERS
+        ====================================== -->
+
+        <section
+            id="orders"
+            class="admin-section hidden-section"
+        >
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Order Management
+                    </h2>
+
+                    <p>
+                        View and manage the latest customer order.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="refresh-button"
+                    onclick="loadAll()"
+                >
+                    🔄 Refresh
+                </button>
+
+            </div>
+
+
+            <div id="ordersContainer">
+
+                <p class="empty-message">
+                    No orders found.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             MENU
+        ====================================== -->
+
+        <section
+            id="menu"
+            class="admin-section hidden-section"
+        >
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Menu
+                    </h2>
+
+                    <p>
+                        Current restaurant menu items.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="menuContainer"
+                class="menu-admin-grid"
+            >
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             RESTAURANT
+        ====================================== -->
+
+        <section
+            id="restaurant"
+            class="admin-section hidden-section"
+        >
+
+
+            <div class="dashboard-card">
+
+                <h2>
+                    Restaurant Information
+                </h2>
+
+
+                <div class="restaurant-info">
+
+
+                    <div class="info-row">
+
+                        <span>
+                            Restaurant
+                        </span>
+
+                        <strong>
+                            Bite Adda
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span>
+                            Order Types
+                        </span>
+
+                        <strong>
+                            Delivery / Takeaway / Dine-In
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span>
+                            Payment
+                        </span>
+
+                        <strong>
+                            Cash / bKash
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span>
+                            System
+                        </span>
+
+                        <strong>
+                            Frontend Demo
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Bite Adda | Checkout</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+
+<body data-page="checkout">
+
+
+    <!-- Header -->
+
+    <header class="site-header">
+
+    <a href="index.html" class="brand">
+
+        <div class="brand-mark">
+            🍔
+        </div>
+
+        <div>
+            <b>BITE ADDA</b>
+
+            <small>
+                FOOD • FUN • FLAVOUR
+            </small>
+        </div>
+
+    </a>
+
+    <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Open navigation">
+
+        ☰
+
+    </button>
+
+    <nav class="nav" id="mainNav">
+
+        <a href="index.html" data-nav="home">
+            Home
+        </a>
+
+        <a href="menu.html" data-nav="menu">
+            Menu
+        </a>
+
+        <a href="about.html" data-nav="about">
+            About
+        </a>
+
+        <a href="track.html" data-nav="track">
+            Track Order
+        </a>
+
+        <a href="cart.html" data-nav="cart">
+            Cart
+            <span class="cart-badge" id="cartCount">0</span>
+        </a>
+
+        <a href="login.html" class="login-pill">
+            Login
+        </a>
+
+    </nav>
+
+</header>
+
+
+    <main class="page-shell">
+
+
+        <!-- ==============================
+             TITLE
+        =============================== -->
+
+        <section class="page-title">
+
+            <p class="eyebrow gold">
+                ALMOST THERE
+            </p>
+
+            <h1>
+                CHECKOUT
+            </h1>
+
+            <p>
+                Choose how you'd like to receive
+                your food and complete your order.
+            </p>
+
+        </section>
+
+
+        <!-- ==============================
+             CHECKOUT LAYOUT
+        =============================== -->
+
+        <form
+            id="checkoutForm"
+            class="checkout-layout">
+
+
+            <!-- =================================
+                 LEFT SIDE
+            ================================== -->
+
+            <div class="checkout-card">
+
+
+                <!-- ==============================
+                     CUSTOMER INFORMATION
+                =============================== -->
+
+                <h2>
+                    Customer Information
+                </h2>
+
+
+                <label>
+
+                    Full Name
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        name="name"
+                        placeholder="Enter your name"
+                        required>
+
+                </label>
+
+
+                <label>
+
+                    Phone Number
+
+                    <input
+                        type="tel"
+                        id="customerPhone"
+                        name="phone"
+                        placeholder="01XXXXXXXXX"
+                        pattern="01[0-9]{9}"
+                        required>
+
+                </label>
+
+
+                <!-- ==============================
+                     ORDER TYPE
+                =============================== -->
+
+                <h2>
+                    How would you like your order?
+                </h2>
+
+
+                <div class="order-types">
+
+
+                    <button
+                        type="button"
+                        class="order-type active"
+                        data-type="delivery">
+
+                        <strong>
+                            🛵 Delivery
+                        </strong>
+
+                        <small>
+                            We'll bring it to you
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="order-type"
+                        data-type="takeaway">
+
+                        <strong>
+                            🥡 Takeaway
+                        </strong>
+
+                        <small>
+                            Pick it up yourself
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="order-type"
+                        data-type="dinein">
+
+                        <strong>
+                            🍽️ Dine-In
+                        </strong>
+
+                        <small>
+                            Eat at Bite Adda
+                        </small>
+
+                    </button>
+
+                </div>
+
+
+                <!-- ==============================
+                     DELIVERY
+                =============================== -->
+
+                <div id="deliveryFields">
+
+                    <h2>
+                        Delivery Address
+                    </h2>
+
+
+                    <label>
+
+                        Address
+
+                        <textarea
+                            id="address"
+                            placeholder="House / Road / Area / City"></textarea>
+
+                    </label>
+
+                </div>
+
+
+                <!-- ==============================
+                     TAKEAWAY
+                =============================== -->
+
+                <div
+                    id="takeawayFields"
+                    class="hidden">
+
+                    <div class="info-box">
+
+                        <strong>
+                            🥡 Takeaway
+                        </strong>
+
+                        <p>
+                            Your order will be prepared
+                            and kept ready for pickup.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==============================
+                     DINE-IN
+                =============================== -->
+
+                <div
+                    id="dineinFields"
+                    class="hidden">
+
+                    <h2>
+                        Choose Your Table
+                    </h2>
+
+
+                    <div class="info-box">
+
+                        <strong>
+                            🍽️ Available Seats
+                        </strong>
+
+                        <p>
+                            Green tables are available.
+                            Occupied tables cannot be selected.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        id="tableGrid"
+                        class="table-grid">
+
+                        <!-- JavaScript loads tables -->
+
+                    </div>
+
+
+                    <input
+                        type="hidden"
+                        id="selectedTable"
+                        name="table">
+
+                </div>
+
+
+                <!-- ==============================
+                     PAYMENT
+                =============================== -->
+
+                <h2>
+                    Payment Method
+                </h2>
+
+
+                <div class="payment-options">
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="cash"
+                            checked>
+
+                        💵 Cash
+
+                    </label>
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="bkash">
+
+                        📱 bKash
+
+                    </label>
+
+                </div>
+
+
+                <!-- ==============================
+                     BKASH
+                =============================== -->
+
+                <div
+                    id="bkashBox"
+                    class="bkash-box hidden">
+
+                    <p>
+                        Send the payment to:
+                    </p>
+
+                    <strong>
+                        01700-000000
+                    </strong>
+
+                    <p>
+                        After payment, enter
+                        your bKash Transaction ID.
+                    </p>
+
+
+                    <label>
+
+                        Transaction ID
+
+                        <input
+                            type="text"
+                            id="transactionId"
+                            placeholder="Example: 8A7B6C5D">
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-red wide">
+
+                    PLACE ORDER
+
+                </button>
+
+
+            </div>
+
+
+            <!-- =================================
+                 RIGHT SIDE
+            ================================== -->
+
+            <aside class="order-summary">
+
+                <h2>
+                    YOUR ORDER
+                </h2>
+
+
+                <div id="checkoutItems">
+
+                    <!-- JavaScript -->
+
+                </div>
+
+
+                <hr>
+
+
+                <div class="summary-line">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <strong id="subtotal">
+                        ৳0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-line">
+
+                    <span>
+                        Delivery Fee
+                    </span>
+
+                    <strong id="deliveryFee">
+                        ৳60
+                    </strong>
+
+                </div>
+
+
+                <hr>
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="grandTotal">
+                        ৳0
+                    </strong>
+
+                </div>
+
+            </aside>
+
+
+        </form>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+    <div class="footer-brand">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                🍔
+            </div>
+
+            <div>
+                <b>BITE ADDA</b>
+
+                <small>
+                    FOOD • FUN • FLAVOUR
+                </small>
+            </div>
+
+        </div>
+
+        <p>
+            Good food, good mood.
+            Your neighbourhood food spot
+            for every craving.
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <h4>QUICK LINKS</h4>
+
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About Us</a>
+        <a href="track.html">Track Order</a>
+
+    </div>
+
+
+    <div>
+
+        <h4>ORDER WITH US</h4>
+
+        <a href="menu.html">Delivery</a>
+        <a href="menu.html">Takeaway</a>
+        <a href="menu.html">Dine-In</a>
+        <a href="cart.html">My Cart</a>
+
+    </div>
+
+
+    <div>
+
+        <h4>FIND US</h4>
+
+        <p>📍 Chittagong, Bangladesh</p>
+        <p>☎ 01700-000000</p>
+        <p>✉ hello@biteadda.com</p>
+        <p>Open daily: 11 AM – 11 PM</p>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 Bite Adda.
+        All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

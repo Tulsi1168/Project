@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "table": "T01",
+        "capacity": 2,
+        "status": "available"
+    },
+
+    {
+        "id": 2,
+        "table": "T02",
+        "capacity": 2,
+        "status": "occupied"
+    },
+
+    {
+        "id": 3,
+        "table": "T03",
+        "capacity": 4,
+        "status": "available"
+    },
+
+    {
+        "id": 4,
+        "table": "T04",
+        "capacity": 4,
+        "status": "available"
+    },
+
+    {
+        "id": 5,
+        "table": "T05",
+        "capacity": 6,
+        "status": "available"
+    },
+
+    {
+        "id": 6,
+        "table": "T06",
+        "capacity": 2,
+        "status": "occupied"
+    },
+
+    {
+        "id": 7,
+        "table": "T07",
+        "capacity": 4,
+        "status": "available"
+    },
+
+    {
+        "id": 8,
+        "table": "T08",
+        "capacity": 6,
+        "status": "available"
+    }
+]
