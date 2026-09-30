@@ -5,86 +5,90 @@
 
 
 /* =====================================================
-   SAVE ORDER TO CURRENT USER
+   SAVE ORDER TO USER HISTORY
 ===================================================== */
 
 function saveOrderToUserHistory(order) {
 
     const currentUser =
         JSON.parse(
-            localStorage.getItem(
-                "biteAddaCurrentUser"
-            )
+            localStorage.getItem("biteAddaCurrentUser")
         );
 
 
-    /* USER NOT LOGGED IN */
+    /* =================================================
+       USER IS LOGGED IN
+    ================================================= */
 
-    if (!currentUser) {
+    if (currentUser) {
+
+        if (!currentUser.orders) {
+
+            currentUser.orders = [];
+
+        }
+
+
+        currentUser.orders.push(order);
+
+
+        localStorage.setItem(
+            "biteAddaCurrentUser",
+            JSON.stringify(currentUser)
+        );
+
+
+        /* Also update registered users */
+
+        const users =
+            JSON.parse(
+                localStorage.getItem("biteAddaUsers")
+            ) || [];
+
+
+        const userIndex =
+            users.findIndex(function (user) {
+
+                return user.email === currentUser.email;
+
+            });
+
+
+        if (userIndex !== -1) {
+
+            users[userIndex].orders =
+                currentUser.orders;
+
+
+            localStorage.setItem(
+                "biteAddaUsers",
+                JSON.stringify(users)
+            );
+
+        }
+
 
         return;
 
     }
 
 
-    /* GET ALL USERS */
+    /* =================================================
+       GUEST USER
+    ================================================= */
 
-    const users =
+    const guestOrders =
         JSON.parse(
-            localStorage.getItem(
-                "biteAddaUsers"
-            )
+            localStorage.getItem("biteAddaGuestOrders")
         ) || [];
 
 
-    /* FIND CURRENT USER */
+    guestOrders.push(order);
 
-    const userIndex =
-        users.findIndex(function (user) {
-
-            return user.id === currentUser.id;
-
-        });
-
-
-    /* USER NOT FOUND */
-
-    if (userIndex === -1) {
-
-        return;
-
-    }
-
-
-    /* MAKE SURE ORDERS ARRAY EXISTS */
-
-    if (!users[userIndex].orders) {
-
-        users[userIndex].orders = [];
-
-    }
-
-
-    /* ADD ORDER */
-
-    users[userIndex].orders.push(order);
-
-
-    /* SAVE ALL USERS */
 
     localStorage.setItem(
-        "biteAddaUsers",
-        JSON.stringify(users)
-    );
-
-
-    /* UPDATE CURRENT USER */
-
-    localStorage.setItem(
-        "biteAddaCurrentUser",
-        JSON.stringify(
-            users[userIndex]
-        )
+        "biteAddaGuestOrders",
+        JSON.stringify(guestOrders)
     );
 
 }

@@ -113,7 +113,8 @@
 
         <form
             id="checkoutForm"
-            class="checkout-layout">
+            class="checkout-layout"
+            novalidate>
 
 
             <!-- =================================
@@ -276,43 +277,109 @@
                 =============================== -->
 
                 <div
-                    id="dineinFields"
-                    class="hidden">
+    id="dineinFields"
+    class="hidden">
 
-                    <h2>
-                        Choose Your Table
-                    </h2>
-
-
-                    <div class="info-box">
-
-                        <strong>
-                            🍽️ Available Seats
-                        </strong>
-
-                        <p>
-                            Green tables are available.
-                            Occupied tables cannot be selected.
-                        </p>
-
-                    </div>
+    <h2>
+        Reserve Your Table
+    </h2>
 
 
-                    <div
-                        id="tableGrid"
-                        class="table-grid">
+    <div class="info-box">
 
-                        <!-- JavaScript loads tables -->
+        <strong>
+            🍽️ Dine-In Reservation
+        </strong>
 
-                    </div>
+        <p>
+            Select a table and choose when you
+            would like to dine with us.
+            Please arrive within 15 minutes of
+            your reservation time.
+        </p>
+
+    </div>
 
 
-                    <input
-                        type="hidden"
-                        id="selectedTable"
-                        name="table">
+    <!-- RESERVATION DATE -->
 
-                </div>
+    <label>
+
+        Reservation Date
+
+        <input
+            type="date"
+            id="reservationDate"
+            name="reservationDate">
+
+    </label>
+
+
+    <!-- RESERVATION TIME -->
+
+    <label>
+
+        Reservation Time
+
+        <input
+            type="time"
+            id="reservationTime"
+            name="reservationTime">
+
+    </label>
+
+
+    <div class="info-box">
+
+        <strong>
+            ⏰ 15-Minute Arrival Policy
+        </strong>
+
+        <p>
+            Your table will be held for
+            15 minutes after your reservation
+            time. If you do not arrive within
+            this period, the reservation will
+            automatically be cancelled.
+        </p>
+
+    </div>
+
+
+    <h2>
+        Choose Your Table
+    </h2>
+
+
+    <div class="info-box">
+
+        <strong>
+            🍽️ Available Tables
+        </strong>
+
+        <p>
+            Green tables are available.
+            Reserved tables cannot be selected.
+        </p>
+
+    </div>
+
+
+    <div
+        id="tableGrid"
+        class="table-grid">
+
+        <!-- JavaScript loads tables -->
+
+    </div>
+
+
+    <input
+        type="hidden"
+        id="selectedTable"
+        name="table">
+
+</div>
 
 
                 <!-- ==============================

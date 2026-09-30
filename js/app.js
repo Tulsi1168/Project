@@ -1,7 +1,6 @@
 /* =====================================================
    BITE ADDA
    MAIN JAVASCRIPT
-   MENU + CART + CHECKOUT + DINE-IN
 ===================================================== */
 
 
@@ -159,7 +158,7 @@ async function loadMenuData() {
                 price: 180,
                 description:
                     "Crispy zinger chicken with fresh lettuce and creamy house sauce.",
-                image: "",
+                image: "images/zinger burger.jpeg",
                 badge: "Bestseller",
                 extras: [
             {
@@ -184,7 +183,7 @@ async function loadMenuData() {
                 price: 220,
                 description:
                     "Juicy beef patty with melted cheese, fresh vegetables and special sauce.",
-                image: "",
+                image: "images/beef burger.jpeg",
                 badge: ""
             },
 
@@ -195,7 +194,7 @@ async function loadMenuData() {
                 price: 210,
                 description:
                     "Two crispy chicken pieces coated with spicy signature seasoning.",
-                image: "",
+                image: "images/fiery fried.jpeg",
                 badge: "Hot"
             },
 
@@ -206,7 +205,7 @@ async function loadMenuData() {
                 price: 190,
                 description:
                     "Two golden crispy chicken pieces with a classic crunchy coating.",
-                image: "",
+                image: "images/fried chicken.jpeg",
                 badge: ""
             },
 
@@ -217,7 +216,7 @@ async function loadMenuData() {
                 price: 150,
                 description:
                     "Tender chicken, fresh vegetables and creamy garlic sauce in soft flatbread.",
-                image: "",
+                image: "images/Shawarma.jpeg",
                 badge: ""
             },
 
@@ -228,7 +227,7 @@ async function loadMenuData() {
                 price: 170,
                 description:
                     "Juicy seasoned beef with onions, vegetables and special sauce.",
-                image: "",
+                image: "images/kathi roll.jpeg",
                 badge: ""
             },
 
@@ -239,7 +238,7 @@ async function loadMenuData() {
                 price: 140,
                 description:
                     "Crispy golden fries loaded with creamy cheese sauce and toppings.",
-                image: "",
+                image: "images/fries.jpeg",
                 badge: ""
             },
 
@@ -250,7 +249,7 @@ async function loadMenuData() {
                 price: 110,
                 description:
                     "Crunchy golden onion rings served fresh and perfectly seasoned.",
-                image: "",
+                image: "images/onion rings.jpeg",
                 badge: ""
             },
 
@@ -261,7 +260,7 @@ async function loadMenuData() {
                 price: 520,
                 description:
                     "A satisfying family combo packed with delicious favourites for sharing.",
-                image: "",
+                image: "images/family combo.jpeg",
                 badge: "15% OFF"
             },
 
@@ -272,7 +271,7 @@ async function loadMenuData() {
                 price: 280,
                 description:
                     "A crispy zinger burger served with fries and a refreshing drink.",
-                image: "",
+                image: "images/zinger combo.jpeg",
                 badge: ""
             },
 
@@ -283,7 +282,7 @@ async function loadMenuData() {
                 price: 120,
                 description:
                     "Smooth and creamy chilled coffee shake with rich coffee flavour.",
-                image: "",
+                image: "images/cold coffee.jpg",
                 badge: ""
             },
 
@@ -294,7 +293,7 @@ async function loadMenuData() {
                 price: 90,
                 description:
                     "A refreshing blend of lemon, mint and ice.",
-                image: "",
+                image: "images/mint lemon.jpeg",
                 badge: ""
             },
 
@@ -304,7 +303,7 @@ async function loadMenuData() {
                 category: "Beverages",
                 price: 150,
                 description: "Creamy chocolate shake topped with chocolate drizzle.",
-                image: "",
+                image: "images/choco shake.jpeg",
                 badge: "Sweet",
                 extras: [
                 {
@@ -1199,77 +1198,61 @@ function setupOrderTypes() {
 function updateOrderFields() {
 
     const deliveryFields =
-        document.getElementById(
-            "deliveryFields"
-        );
-
+        document.getElementById("deliveryFields");
 
     const takeawayFields =
-        document.getElementById(
-            "takeawayFields"
-        );
-
+        document.getElementById("takeawayFields");
 
     const dineinFields =
-        document.getElementById(
-            "dineinFields"
-        );
+        document.getElementById("dineinFields");
+
+    const address =
+        document.getElementById("address");
+
+    const reservationDate =
+        document.getElementById("reservationDate");
+
+    const reservationTime =
+        document.getElementById("reservationTime");
 
 
     if (
         !deliveryFields ||
         !takeawayFields ||
         !dineinFields
-    ) return;
-
-
-    deliveryFields.classList.add(
-        "hidden"
-    );
-
-
-    takeawayFields.classList.add(
-        "hidden"
-    );
-
-
-    dineinFields.classList.add(
-        "hidden"
-    );
-
-
-    if (
-        selectedOrderType ===
-        "delivery"
     ) {
-
-        deliveryFields.classList.remove(
-            "hidden"
-        );
-
+        return;
     }
 
 
-    if (
-        selectedOrderType ===
-        "takeaway"
-    ) {
+    deliveryFields.classList.add("hidden");
+    takeawayFields.classList.add("hidden");
+    dineinFields.classList.add("hidden");
 
-        takeawayFields.classList.remove(
-            "hidden"
-        );
+
+    address.required = false;
+    reservationDate.required = false;
+    reservationTime.required = false;
+
+
+    if (selectedOrderType === "delivery") {
+
+        deliveryFields.classList.remove("hidden");
+        address.required = true;
 
     }
 
+    else if (selectedOrderType === "takeaway") {
 
-    if (
-        selectedOrderType ===
-        "dinein"
-    ) {
+        takeawayFields.classList.remove("hidden");
 
-        dineinFields.classList.remove(
-            "hidden"
-        );
+    }
+
+    else if (selectedOrderType === "dinein") {
+
+        dineinFields.classList.remove("hidden");
+        reservationDate.required = true;
+        reservationTime.required = true;
 
     }
 
@@ -1534,6 +1517,65 @@ function displaySeats(seats) {
 
 }
 
+/* =====================================================
+   RESERVATION SETTINGS
+===================================================== */
+
+const RESERVATION_GRACE_PERIOD = 15;
+
+
+/* =====================================================
+   GET RESERVATIONS
+===================================================== */
+
+function getReservations() {
+
+    return JSON.parse(
+        localStorage.getItem("biteAddaReservations")
+    ) || [];
+
+}
+
+
+/* =====================================================
+   SAVE RESERVATIONS
+===================================================== */
+
+function saveReservations(reservations) {
+
+    localStorage.setItem(
+        "biteAddaReservations",
+        JSON.stringify(reservations)
+    );
+
+}
+
+
+/* =====================================================
+   CHECK TABLE RESERVATION
+===================================================== */
+
+function isTableReserved(table, date, time) {
+
+    const reservations =
+        getReservations();
+
+
+    return reservations.some(
+        function (reservation) {
+
+            return (
+                reservation.table === table &&
+                reservation.reservationDate === date &&
+                reservation.reservationTime === time &&
+                reservation.status === "reserved"
+            );
+
+        }
+    );
+
+}
+
 
 /* =====================================================
    PAYMENT
@@ -1627,45 +1669,153 @@ function setupCheckoutForm() {
 
 
             if (
-                selectedOrderType ===
-                "dinein"
-            ) {
+    selectedOrderType ===
+    "dinein"
+) {
+
+    const selectedTable =
+        document.getElementById(
+            "selectedTable"
+        );
 
 
-                const selectedTable =
-                    document.getElementById(
-                        "selectedTable"
-                    );
+    const reservationDate =
+        document.getElementById(
+            "reservationDate"
+        );
 
 
-                if (
-                    !selectedTable ||
-                    !selectedTable.value
-                ) {
-
-                    alert(
-                        "Please select an available table."
-                    );
-
-                    return;
-
-                }
-
-            }
+    const reservationTime =
+        document.getElementById(
+            "reservationTime"
+        );
 
 
-            const name =
-                document.getElementById(
-                    "customerName"
-                ).value;
+    /* CHECK TABLE */
+
+    if (
+        !selectedTable ||
+        !selectedTable.value
+    ) {
+
+        alert(
+            "Please select an available table."
+        );
+
+        return;
+
+    }
 
 
-            const orderNumber =
-             "BA" +
-            Math.floor(
-                100000 +
-                 Math.random() * 900000
-            );
+    /* CHECK DATE */
+
+    if (
+        !reservationDate ||
+        !reservationDate.value
+    ) {
+
+        alert(
+            "Please select a reservation date."
+        );
+
+        return;
+
+    }
+
+
+    /* CHECK TIME */
+
+    if (
+        !reservationTime ||
+        !reservationTime.value
+    ) {
+
+        alert(
+            "Please select a reservation time."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Create reservation date/time.
+     */
+
+    const reservationDateTime =
+        new Date(
+            reservationDate.value +
+            "T" +
+            reservationTime.value
+        );
+
+
+    const now =
+        new Date();
+
+
+    /*
+     * Reservation cannot be
+     * in the past.
+     */
+
+    if (
+        reservationDateTime <= now
+    ) {
+
+        alert(
+            "Please select a future reservation time."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Check whether the table is
+     * already reserved.
+     */
+
+    if (
+        isTableReserved(
+            selectedTable.value,
+            reservationDate.value,
+            reservationTime.value
+        )
+    ) {
+
+        alert(
+            "Sorry, this table is already reserved for that time. Please choose another table or time."
+        );
+
+        refreshTables();
+
+        return;
+
+    }
+
+}
+
+
+           const name =
+    document.getElementById(
+        "customerName"
+    ).value;
+
+const phone =
+    document.getElementById(
+        "customerPhone"
+    ).value.trim();
+
+
+const orderNumber =
+    "BA" +
+    Math.floor(
+        100000 +
+        Math.random() * 900000
+    );
 
 
 const newOrder = {
@@ -1674,15 +1824,130 @@ const newOrder = {
 
     customerName: name,
 
+    phone: phone,
+
     type: selectedOrderType,
 
     items: cart,
 
     total: calculateFinalTotal(),
 
-    currentStep: 0
+    currentStep: 0,
+
+    createdAt:
+        new Date().toISOString()
 
 };
+
+/* =====================================================
+   CREATE DINE-IN RESERVATION
+===================================================== */
+
+if (
+    selectedOrderType ===
+    "dinein"
+) {
+
+    const selectedTable =
+        document.getElementById(
+            "selectedTable"
+        );
+
+
+    const reservationDate =
+        document.getElementById(
+            "reservationDate"
+        );
+
+
+    const reservationTime =
+        document.getElementById(
+            "reservationTime"
+        );
+
+
+    const reservationStart =
+        new Date(
+            reservationDate.value +
+            "T" +
+            reservationTime.value
+        );
+
+
+    /*
+     * Customer gets 15 minutes
+     * to arrive.
+     */
+
+    const arrivalDeadline =
+        new Date(
+            reservationStart.getTime()
+            +
+            RESERVATION_GRACE_PERIOD
+            * 60
+            * 1000
+        );
+
+
+    const reservation = {
+
+        reservationId:
+            "RES" +
+            Math.floor(
+                100000 +
+                Math.random() * 900000
+            ),
+
+        orderId:
+            orderNumber,
+
+        customerName:
+            name,
+
+        table:
+            selectedTable.value,
+
+        reservationDate:
+            reservationDate.value,
+
+        reservationTime:
+            reservationTime.value,
+
+        arrivalDeadline:
+            arrivalDeadline.toISOString(),
+
+        status:
+            "reserved",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    const reservations =
+        getReservations();
+
+
+    reservations.push(
+        reservation
+    );
+
+
+    saveReservations(
+        reservations
+    );
+
+
+    /*
+     * Save reservation information
+     * inside the order too.
+     */
+
+    newOrder.reservation =
+        reservation;
+
+}
 
 
 localStorage.setItem(
@@ -1705,8 +1970,8 @@ saveOrderToUserHistory(newOrder);
 
 
             window.location.href =
-                "track.html";
-
+    "track.html?orderId=" +
+    encodeURIComponent(orderNumber);
         }
     );
 
@@ -1739,34 +2004,43 @@ function calculateFinalTotal() {
    TRACK ORDER
 ===================================================== */
 
+/* =====================================================
+   TRACK ORDER
+===================================================== */
+
 function setupTrackOrder() {
 
-    const trackForm = document.getElementById("trackForm");
+    const trackForm =
+        document.getElementById("trackForm");
+
 
     if (!trackForm) return;
 
 
-    trackForm.addEventListener("submit", function (event) {
+    const orderIdInput =
+        document.getElementById("orderIdInput");
 
-        event.preventDefault();
 
+    /* =================================================
+       FUNCTION TO TRACK ORDER
+    ================================================= */
 
-        const orderIdInput =
-            document.getElementById("orderIdInput");
+    function trackOrder(orderId) {
 
-        const orderId =
-            orderIdInput.value.trim().toUpperCase();
+        orderId =
+            orderId.trim().toUpperCase();
 
 
         const trackResult =
             document.getElementById("trackResult");
+
 
         const trackError =
             document.getElementById("trackError");
 
 
         /*
-         * Get the order saved during checkout
+         * Get the latest saved order
          */
 
         const savedOrder =
@@ -1775,10 +2049,9 @@ function setupTrackOrder() {
             );
 
 
-        /*
-         * Check whether an order exists
-         * and whether the ID matches
-         */
+        /* =================================================
+           CHECK ORDER
+        ================================================= */
 
         if (
             !savedOrder ||
@@ -1794,38 +2067,45 @@ function setupTrackOrder() {
         }
 
 
-        /*
-         * Order found
-         */
+        /* =================================================
+           ORDER FOUND
+        ================================================= */
 
         trackError.classList.add("hidden");
 
         trackResult.classList.remove("hidden");
 
 
-        document.getElementById("displayOrderId")
-            .textContent = savedOrder.orderId;
+        document.getElementById(
+            "displayOrderId"
+        ).textContent =
+            savedOrder.orderId;
 
 
         const displayType =
-            document.getElementById("displayOrderType");
+            document.getElementById(
+                "displayOrderType"
+            );
 
 
         if (savedOrder.type === "delivery") {
 
-            displayType.textContent = "🛵 Delivery";
+            displayType.textContent =
+                "🛵 Delivery";
 
         }
 
         else if (savedOrder.type === "takeaway") {
 
-            displayType.textContent = "🥡 Takeaway";
+            displayType.textContent =
+                "🥡 Takeaway";
 
         }
 
         else if (savedOrder.type === "dinein") {
 
-            displayType.textContent = "🍽️ Dine-In";
+            displayType.textContent =
+                "🍽️ Dine-In";
 
         }
 
@@ -1835,7 +2115,51 @@ function setupTrackOrder() {
             savedOrder.currentStep
         );
 
-    });
+    }
+
+
+    /* =================================================
+       FORM SUBMIT
+    ================================================= */
+
+    trackForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            trackOrder(
+                orderIdInput.value
+            );
+
+        }
+    );
+
+
+    /* =================================================
+       CHECK URL FOR ORDER ID
+    ================================================= */
+
+    const urlParams =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const urlOrderId =
+        urlParams.get("orderId");
+
+
+    if (urlOrderId) {
+
+        orderIdInput.value =
+            urlOrderId;
+
+
+        trackOrder(urlOrderId);
+
+    }
 
 }
 
@@ -2065,31 +2389,3 @@ document.addEventListener(
     }
 );
 
-/* =====================================================
-   ABOUT IMAGE - SCALE UP ON PAGE LOAD
-===================================================== */
-
-.about-image {
-    animation: aboutImageScale 1s ease-out forwards;
-    transform-origin: center center;
-}
-
-
-@keyframes aboutImageScale {
-
-    0% {
-        opacity: 0;
-        transform: scale(0.65);
-    }
-
-    60% {
-        opacity: 1;
-        transform: scale(1.08);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-}

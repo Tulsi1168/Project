@@ -239,6 +239,11 @@ function setupLogin() {
                 "biteAddaCurrentUser",
                 JSON.stringify(user)
             );
+            mergeGuestOrders(user);
+
+
+window.location.href =
+    "account.html";
 
 
             message.textContent =
@@ -270,6 +275,94 @@ function getCurrentUser() {
         localStorage.getItem(
             "biteAddaCurrentUser"
         )
+    );
+
+}
+/* =====================================================
+   SAVE ORDER TO USER HISTORY
+===================================================== */
+
+function saveOrderToUserHistory(order) {
+
+    const currentUser =
+        getCurrentUser();
+
+
+    /* ==========================================
+       LOGGED-IN USER
+    ========================================== */
+
+    if (currentUser) {
+
+        if (!currentUser.orders) {
+
+            currentUser.orders = [];
+
+        }
+
+
+        currentUser.orders.push(order);
+
+
+        /* Save updated current user */
+
+        localStorage.setItem(
+            "biteAddaCurrentUser",
+            JSON.stringify(currentUser)
+        );
+
+
+        /* Update registered users */
+
+        const users =
+            getUsers();
+
+
+        const userIndex =
+            users.findIndex(function (user) {
+
+                return (
+                    user.email ===
+                    currentUser.email
+                );
+
+            });
+
+
+        if (userIndex !== -1) {
+
+            users[userIndex].orders =
+                currentUser.orders;
+
+
+            saveUsers(users);
+
+        }
+
+
+        return;
+
+    }
+
+
+    /* ==========================================
+       GUEST USER
+    ========================================== */
+
+    const guestOrders =
+        JSON.parse(
+            localStorage.getItem(
+                "biteAddaGuestOrders"
+            )
+        ) || [];
+
+
+    guestOrders.push(order);
+
+
+    localStorage.setItem(
+        "biteAddaGuestOrders",
+        JSON.stringify(guestOrders)
     );
 
 }
@@ -351,3 +444,161 @@ document.addEventListener(
 
     }
 );
+
+/* =====================================================
+   MERGE GUEST ORDERS AFTER LOGIN
+===================================================== */
+
+function mergeGuestOrders(currentUser) {
+
+    if (!currentUser) return;
+
+
+    /* Get guest orders */
+
+    const guestOrders =
+        JSON.parse(
+            localStorage.getItem(
+                "biteAddaGuestOrders"
+            )
+        ) || [];
+
+
+    if (guestOrders.length === 0) {
+
+        return;
+
+    }
+
+
+    /* Make sure user has order history */
+
+    if (!currentUser.orders) {
+
+        currentUser.orders = [];
+
+    }
+
+
+    /* Find guest orders belonging
+       to this user's phone */
+
+    const matchingOrders =
+        guestOrders.filter(
+            function (order) {
+
+                return (
+                    order.phone ===
+                    currentUser.phone
+                );
+
+            }
+        );
+
+
+    if (matchingOrders.length === 0) {
+
+        return;
+
+    }
+
+
+    /* Avoid duplicate orders */
+
+    matchingOrders.forEach(
+        function (guestOrder) {
+
+            const alreadyExists =
+                currentUser.orders.some(
+                    function (existingOrder) {
+
+                        return (
+                            existingOrder.orderId ===
+                            guestOrder.orderId
+                        );
+
+                    }
+                );
+
+
+            if (!alreadyExists) {
+
+                currentUser.orders.push(
+                    guestOrder
+                );
+
+            }
+
+        }
+    );
+
+
+    /* Save updated current user */
+
+    localStorage.setItem(
+        "biteAddaCurrentUser",
+        JSON.stringify(currentUser)
+    );
+
+
+    /* Update registered user */
+
+    const users =
+        JSON.parse(
+            localStorage.getItem(
+                "biteAddaUsers"
+            )
+        ) || [];
+
+
+    const userIndex =
+        users.findIndex(
+            function (user) {
+
+                return (
+                    user.email ===
+                    currentUser.email
+                );
+
+            }
+        );
+
+
+    if (userIndex !== -1) {
+
+        users[userIndex].orders =
+            currentUser.orders;
+
+
+        localStorage.setItem(
+            "biteAddaUsers",
+            JSON.stringify(users)
+        );
+
+    }
+
+
+    /* Remove the guest orders
+       that were successfully linked */
+
+    const remainingGuestOrders =
+        guestOrders.filter(
+            function (order) {
+
+                return (
+                    order.phone !==
+                    currentUser.phone
+                );
+
+            }
+        );
+
+
+    localStorage.setItem(
+        "biteAddaGuestOrders",
+        JSON.stringify(
+            remainingGuestOrders
+        )
+    );
+
+}
